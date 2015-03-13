@@ -18,7 +18,7 @@ public class StringRestruct {
 		sr.method2();
 	}
 	
-	/*
+	/**
 	 * <pre>time complexity: {@code O(n)}
 	 * space complexity: {@code O(1)}</pre>
 	 * 
@@ -47,7 +47,7 @@ public class StringRestruct {
 		scanner.close();
 	}
 	
-	/*
+	/**
 	 * <pre>time complexity: {@code O(n)}
 	 * space complexity: {@code O(n)}</pre>
 	 * 
