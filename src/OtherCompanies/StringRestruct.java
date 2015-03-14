@@ -14,8 +14,13 @@ public class StringRestruct {
 
 	public static void main(String[] args) {
 		StringRestruct sr = new StringRestruct();
-		sr.method1();
-		sr.method2();
+		Scanner scanner = new Scanner(System.in);
+		String inputString = null;
+		while(!(inputString = scanner.nextLine()).equals("exit")){
+			sr.method1(inputString);
+//			sr.method2(inputString);
+		}
+		scanner.close();
 	}
 	
 	/**
@@ -23,28 +28,24 @@ public class StringRestruct {
 	 * space complexity: {@code O(1)}</pre>
 	 * 
 	 */
-	public void method1(){
-		Scanner scanner = new Scanner(System.in);
-		char[] inputString = null;
-		while(!(inputString = scanner.nextLine().toCharArray()).equals("exit")){
-			int end = inputString.length - 1, start = end - 1;
-			while(start >= 0 && end >0){
-				while(end > 0 && inputString[end] != '*')
-					end--;
-				start = end;
-				while (start >= 0) {
-					if(inputString[start] == '*')
-						start--;
-					else break;
-				}
-				if(start < 0)break;
-				char temp = inputString[end];
-				inputString[end] = inputString[start];
-				inputString[start] = temp;
+	public void method1(String input){
+		char[] inputChars = input.toCharArray();
+		int end = inputChars.length - 1, start = end - 1;
+		while(start >= 0 && end >0){
+			while(end > 0 && inputChars[end] != '*')
+				end--;
+			start = end;
+			while (start >= 0) {
+				if(inputChars[start] == '*')
+					start--;
+				else break;
 			}
-			System.out.println(inputString);
+			if(start < 0)break;
+			char temp = inputChars[end];
+			inputChars[end] = inputChars[start];
+			inputChars[start] = temp;
 		}
-		scanner.close();
+		System.out.println(inputChars);
 	}
 	
 	/**
@@ -52,22 +53,17 @@ public class StringRestruct {
 	 * space complexity: {@code O(n)}</pre>
 	 * 
 	 */
-	public void method2(){
+	public void method2(String input){
 		StringBuilder sbstars = new StringBuilder();
 		StringBuilder sbchars = new StringBuilder();
-		Scanner scanner = new Scanner(System.in);
-		String inputString = null;
-		while(!(inputString = scanner.nextLine()).trim().equals("exit")){
-			int iter = 0;
-			while(iter < inputString.length()){
-				if(inputString.charAt(iter) == '*')
-					sbstars.append(inputString.charAt(iter));
-				else sbchars.append(inputString.charAt(iter));
-				iter++;
-			}
-			sbstars.append(sbchars);
-			System.out.println(sbstars);
+		int iter = 0;
+		while(iter < input.length()){
+			if(input.charAt(iter) == '*')
+				sbstars.append(input.charAt(iter));
+			else sbchars.append(input.charAt(iter));
+			iter++;
 		}
-		scanner.close();
+		sbstars.append(sbchars);
+		System.out.println(sbstars);
 	}
 }
