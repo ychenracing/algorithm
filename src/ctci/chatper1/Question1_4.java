@@ -27,6 +27,12 @@ public class Question1_4 {
 		scanner.close();
 	}
 	
+	/**
+	 * <pre>time complexity: {@code O(n)}
+	 * </pre>
+	 * @param chars
+	 * @param stringLength
+	 */
 	public static void solution(char[] chars, int stringLength){
 		int spaceCount = 0;
 		int trueLength = 0;
@@ -52,8 +58,8 @@ public class Question1_4 {
 				j--;
 			}
 		}
-		char[] resultArray = Arrays.copyOf(chars, sumLength);
-		System.out.println(resultArray);
+		chars[sumLength] = '\0';
+		System.out.println(chars);
 	}
 
 }
