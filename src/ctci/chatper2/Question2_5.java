@@ -63,85 +63,43 @@ public class Question2_5 {
 	public static void compute(Node first, Node second){
 		Node currentFirst = first;
 		Node currentSecond = second;
-		int flag = 0;
 		int remnant = 0, quotient = 0;
 		Node previousFirst = null;
-		Node previousSecond = null;
-		
 		for(;currentFirst != null && currentSecond != null;currentFirst = currentFirst.next,currentSecond = currentSecond.next){
 			remnant = (currentFirst.num + currentSecond.num + quotient) % 10;
 			quotient = (currentFirst.num + currentSecond.num + quotient) / 10;
 			currentFirst.setNum(remnant);
 			previousFirst = currentFirst;
-			previousSecond = currentSecond;
 		}
 		if(currentFirst == null && currentSecond != null){ //the first linkedlist is longer
-			flag = 2;
-			while(true){
-				if(currentSecond == null && quotient != 0){
-					Node newNode = new Node(quotient);
-					previousSecond.next = newNode;
-					break;
-				}
-				if(currentSecond == null && quotient == 0)
-					break;
-				remnant = (quotient + currentSecond.num) % 10;
-				quotient = (quotient + currentSecond.num) / 10;
-				currentSecond.setNum(remnant);
-				if(currentSecond != null){
-					previousSecond = currentSecond;
-					currentSecond = currentSecond.next;
-				}
-			}
+			previousFirst.next = currentSecond;
+			currentFirst = currentSecond;
 		}
-		else if(currentSecond == null && currentFirst != null){ //the first linkedlist is longer
-			flag = 1;
-			while(true){
-				if(currentFirst == null && quotient != 0){
-					Node newNode = new Node(quotient);
-					previousFirst.next = newNode;
-					break;
-				}
-				else if(currentFirst == null && quotient == 0)
-					break;
-				remnant = (quotient + currentFirst.num) % 10;
-				quotient = (quotient + currentFirst.num) / 10;
-				currentFirst.setNum(remnant);
-				if(currentFirst != null){
-					previousFirst = currentFirst;
-					currentFirst = currentFirst.next;
-				}
-			}
+		else if(currentFirst != null && currentSecond == null){ //the second linkedlist is longer
 		}
-		else {										//two linkedlists share the same length
-			flag = 0;
+		else{				//two linkedlists share the same length
 			if(quotient != 0){
 				Node newNode = new Node(quotient);
-				previousFirst.next = newNode;
+				currentFirst = newNode;
+				previousFirst.next = currentFirst;
+				quotient = 0;
 			}
 		}
-		if(flag == 2){
-			currentFirst = first;
-			currentSecond = second;
-			while(currentFirst != null){
-				System.out.print(currentFirst.num);
-				currentFirst = currentFirst.next;
-				currentSecond = currentSecond.next;
-			}
-			while(currentSecond !=null){
-				System.out.print(currentSecond.num);
-				currentSecond = currentSecond.next;
-			}
-		}
-		else {
-			currentFirst = first;
-			while(currentFirst !=null){
-				System.out.print(currentFirst.num);
-				currentFirst = currentFirst.next;
-			}
+		while(currentFirst != null){
+			if(quotient == 0)
+				break;
+			remnant = (quotient + currentFirst.num) % 10;
+			quotient = (quotient + currentFirst.num) / 10;
+			currentFirst.setNum(remnant);
+			previousFirst = currentFirst;
+			currentFirst = currentFirst.next;
 		}
 		
+		//output the result
+		currentFirst = first;
+		while(currentFirst !=null){
+			System.out.print(currentFirst.num);
+			currentFirst = currentFirst.next;
+		}
 	}
-
-	
 }
