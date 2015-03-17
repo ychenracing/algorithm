@@ -7,6 +7,8 @@ import java.util.Scanner;
  * Digits are in an inverted order. for example, the linkedlist of number "2949" is "9 -> 4 -> 9 -> 2".
  * input two linkedlists, output the sum of them.</pre>
  * 
+ * <pre>add normal order part.</pre>
+ * 
  * @author racing
  * @since 03-17-2015
  *
@@ -56,11 +58,42 @@ public class Question2_5 {
 			currentSecond.setNext(next);
 			currentSecond = currentSecond.next;
 		}
-		compute(first, second);
+		
+		/*//reverted order
+		first = compute(first, second);
+		output(first);*/
+		
+		//normal order
+		first = reverse(first);
+		second = reverse(second);
+		first = reverse(compute(first, second));
+		output(first);
 		scanner.close();
 	}
 	
-	public static void compute(Node first, Node second){
+	//output the result
+	public static void output(Node node){
+		Node currentFirst = node;
+		while(currentFirst !=null){
+			System.out.print(currentFirst.num);
+			currentFirst = currentFirst.next;
+		}
+	}
+	
+	public static Node reverse(Node node){
+		Node first = node;
+		Node next = first.next;
+		first.next = null;
+		while(next != null){
+			Node temp = next.next;
+			next.next = first;
+			first = next;
+			next = temp;
+		}
+		return first;
+	}
+	
+	public static Node compute(Node first, Node second){
 		Node currentFirst = first;
 		Node currentSecond = second;
 		int remnant = 0, quotient = 0;
@@ -75,9 +108,7 @@ public class Question2_5 {
 			previousFirst.next = currentSecond;
 			currentFirst = currentSecond;
 		}
-		else if(currentFirst != null && currentSecond == null){ //the second linkedlist is longer
-		}
-		else{				//two linkedlists share the same length
+		else if(currentFirst == null && currentSecond == null){ //two linkedlists share the same length
 			if(quotient != 0){
 				Node newNode = new Node(quotient);
 				currentFirst = newNode;
@@ -95,11 +126,6 @@ public class Question2_5 {
 			currentFirst = currentFirst.next;
 		}
 		
-		//output the result
-		currentFirst = first;
-		while(currentFirst !=null){
-			System.out.print(currentFirst.num);
-			currentFirst = currentFirst.next;
-		}
+		return first;
 	}
 }
