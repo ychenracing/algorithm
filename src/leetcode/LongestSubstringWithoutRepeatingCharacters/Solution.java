@@ -14,7 +14,6 @@ import java.util.Map;
  * @since 03-05-2015
  */
 public class Solution {
-
 	
 	public int lengthOfLongestSubstring(String s) {
 		char[] chars = s.toCharArray();

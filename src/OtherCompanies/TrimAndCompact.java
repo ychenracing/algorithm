@@ -1,5 +1,16 @@
 package OtherCompanies;
 
+/**
+ * <pre>Trim the spaces at both ends of input string,
+ * and change one or more spaces between words to only one space.
+ * 
+ * Such as: 
+ *  input: '  i love    meituan    '
+ * output: 'i love meituan'
+ * </pre>
+ * @author racing
+ * @version $Id: TrimAndCompact.java, v 0.1 Sep 10, 2015 11:47:59 PM racing Exp $
+ */
 public class TrimAndCompact {
 
     public static void main(String[] args) {
