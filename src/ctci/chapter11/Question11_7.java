@@ -69,6 +69,10 @@ public class Question11_7 {
         }
         System.out.println(Arrays.toString(maxLength));
 
+        int[] result2 = new int[nums.length];
+        int length = getMaxSubSequence(nums, result2);
+        System.out.println("最长非递减子序列的长度为：" + length);
+
     }
 
     public static void getLayers(ArrayList<Person> persons, ArrayList<Person>[] solutions,
@@ -114,5 +118,32 @@ public class Question11_7 {
         result[currentIndex] = newMax;
 
         getMaxSubSequence(nums, result, currentIndex + 1);
+    }
+
+    public static int getMaxSubSequence(int[] nums, int[] result) {
+        result[0] = nums[0];
+        int lastIndex = 0;
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] >= result[lastIndex]) {
+                result[++lastIndex] = nums[i];
+            } else {
+                int insertIndex = binarySearch(result, 0, lastIndex, nums[i]);
+                result[insertIndex] = nums[i];
+            }
+        }
+        return lastIndex + 1;
+    }
+
+    public static int binarySearch(int[] nums, int start, int end, int target) {
+        int left = start, right = end;
+        while (left <= right) {
+            int middle = left + (right - left) / 2;
+            if (nums[middle] <= target) {
+                left = middle + 1;
+            } else {
+                right = middle - 1;
+            }
+        }
+        return right + 1;
     }
 }
