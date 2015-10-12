@@ -31,8 +31,8 @@ public class Solution {
             return null;
 
         ListNode head1 = head;
-        head1.next = null;
         ListNode head2 = head1.next;
+        head1.next = null;
 
         while (head2 != null) {
             ListNode cur = head1;
@@ -50,19 +50,21 @@ public class Solution {
                         curPre.next = temp;
                         temp.next = cur;
                     }
+                    break;
+                } else {
+                    if (cur == head1)
+                        cur = cur.next;
+                    else {
+                        cur = cur.next;
+                        curPre = curPre.next;
+                    }
                 }
-                if (cur == head1)
-                    cur = cur.next;
-                else {
-                    cur = cur.next;
-                    curPre = curPre.next;
-                }
-                if (cur == null) {
-                    ListNode temp = head2;
-                    head2 = head2.next;
-                    curPre.next = temp;
-                    temp.next = null;
-                }
+            }
+            if (cur == null) {
+                ListNode temp = head2;
+                head2 = head2.next;
+                curPre.next = temp;
+                temp.next = null;
             }
         }
         return head1;
