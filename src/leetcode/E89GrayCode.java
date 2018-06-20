@@ -1,22 +1,9 @@
-package leetcode.graycode;
+package leetcode;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * The gray code is a binary numeral system where two successive values differ in only one bit.
- * Given a non-negative integer n representing the total number of bits in the code, print the sequence of gray code. A gray code sequence must begin with 0.
- * For example, given n = 2, return [0,1,3,2]. Its gray code sequence is:
- * <pre>
- * 00 - 0
- * 01 - 1
- * 11 - 3
- * 10 - 2
- * </pre>
- * @author racing
- * @version $Id: Solution.java, v 0.1 Sep 27, 2015 9:05:44 AM racing Exp $
- */
-public class Solution {
+public class E89GrayCode {
 
     public static void main(String[] args) {
         System.out.println(grayCode(4).toString());
