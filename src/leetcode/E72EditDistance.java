@@ -1,6 +1,7 @@
-package leetcode.editdistance;
+package leetcode;
 
-public class Solution {
+public class E72EditDistance {
+
     public static int[][] minDistance(String word1, String word2) {
         //        if (word2 == null || word2.length() == 0)
         //            return word1.length();
@@ -64,4 +65,5 @@ public class Solution {
             }
         }
     }
+
 }

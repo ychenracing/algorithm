@@ -1,6 +1,6 @@
-package leetcode.jumpgame;
+package leetcode;
 
-public class Solution {
+public class E55JumpGame {
 
     public static void main(String[] args) {
         int[] nums = { 3, 2, 1, 0, 4 };
@@ -35,4 +35,5 @@ public class Solution {
             return false;
         return true;
     }
+
 }
