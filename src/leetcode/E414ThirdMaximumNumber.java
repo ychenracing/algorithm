@@ -12,6 +12,7 @@ public class E414ThirdMaximumNumber {
 
     public static void main(String[] args) {
         System.out.println(thirdMax(new int[] { 1, -20, 2 }));
+        System.out.println(thirdMax2(new int[] { 2,2,3,1 }));
     }
 
     public static int thirdMax(int[] nums) {
@@ -61,6 +62,24 @@ public class E414ThirdMaximumNumber {
         if (third == secondary || secondary == max)
             return max;
         return third;
+    }
+    
+
+    public static int thirdMax2(int[] nums) {
+        Integer max = null, secondary = null, third = null;
+        for (int i = 0; i < nums.length; i++) {
+            if (max == null || nums[i] > max) {
+                third = secondary;
+                secondary = max;
+                max = nums[i];
+            } else if (nums[i] < max && (secondary == null || nums[i] > secondary)) {
+                third = secondary;
+                secondary = nums[i];
+            } else if (secondary != null && nums[i] < secondary && (third == null || nums[i] > third)) {
+                third = nums[i];
+            }
+        }
+        return third == null ? max : third;
     }
 
 }
